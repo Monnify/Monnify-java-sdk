@@ -1,5 +1,6 @@
 package com.monnify;
 
+import com.monnify.exceptions.DuplicateInitializationException;
 import com.monnify.exceptions.MonnifyException;
 import com.monnify.utils.StringUtils;
 
@@ -31,7 +32,7 @@ public final class Monnify {
      */
     public static synchronized void initialize(String apiKey, String secretKey) {
         if (initialized) {
-            throw new MonnifyException("Monnify has already been initialized. API keys cannot be changed.");
+            throw new DuplicateInitializationException("Monnify has already been initialized. API keys cannot be changed.");
         }
 
         API_KEY = checkAPIKey(apiKey);
