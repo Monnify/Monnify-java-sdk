@@ -1,5 +1,6 @@
 package com.monnify.models.transaction;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Data
+@Builder
 public class ChargeCardRequest {
     @NotBlank(message = "transactionReference is required")
     private String transactionReference;
