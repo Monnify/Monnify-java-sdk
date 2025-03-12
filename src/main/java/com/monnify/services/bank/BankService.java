@@ -1,6 +1,5 @@
 package com.monnify.services.bank;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.monnify.models.MonnifyBaseResponse;
 import com.monnify.models.bank.BankResponse;
@@ -18,7 +17,6 @@ import static com.monnify.services.auth.AuthService.getToken;
  * @author Oreoluwa Somuyiwa
  */
 public class BankService {
-    private static final Gson gson = new Gson();
     private static final MonnifyClient monnifyClient = new MonnifyClient();
 
     /**
@@ -28,15 +26,12 @@ public class BankService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<List<BankResponse>> getBanks() {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
-
         TypeToken<MonnifyBaseResponse<List<BankResponse>>> typeToken =
                 new TypeToken<MonnifyBaseResponse<List<BankResponse>>>() {};
 
         return monnifyClient.get(
                 "/api/v1/banks",
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -49,19 +44,15 @@ public class BankService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<List<BankResponse>> getBanksWithUssdShortCode() {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
-
         TypeToken<MonnifyBaseResponse<List<BankResponse>>> typeToken =
                 new TypeToken<MonnifyBaseResponse<List<BankResponse>>>() {};
 
         return monnifyClient.get(
                 "/api/v1/sdk/transactions/banks",
-                headers,
+                null,
                 null,
                 typeToken
         );
     }
-
 }
 

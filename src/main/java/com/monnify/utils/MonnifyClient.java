@@ -9,6 +9,7 @@ import okhttp3.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.monnify.Monnify.getBaseUrl;
+import static com.monnify.services.auth.AuthService.getToken;
 
 public class MonnifyClient {
     private final OkHttpClient client = new OkHttpClient();
@@ -68,6 +70,8 @@ public class MonnifyClient {
 
     private <T> MonnifyBaseResponse<T> buildRequest(Request.Builder requestBuilder, String path, Map<String, String> headers, Map<String, String> parameters, TypeToken<MonnifyBaseResponse<T>> typeToken) {
         // Build header
+        requestBuilder.addHeader("Authorization", "Bearer " + getToken());
+
         if (headers != null) {
             headers.forEach(requestBuilder::addHeader);
         }
