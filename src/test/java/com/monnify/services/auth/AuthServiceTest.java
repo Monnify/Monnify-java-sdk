@@ -38,4 +38,40 @@ class AuthServiceTest {
         assertEquals(token, AuthService.getToken());
     }
 
+    @Test
+    @Order(4) // checking that the token gotten from the first request was cached
+    void getToken4() {
+        assertEquals(token, AuthService.getToken());
+    }
+
+    @Test
+    @Order(5) // checking that the token gotten from the first request was cached
+    void getToken5() {
+        assertEquals(token, AuthService.getToken());
+    }
+
+    @Test
+    @Order(6) // checking that the token gotten from the first request was cached
+    void getToken6() {
+        assertEquals(token, AuthService.getToken());
+    }
+
+    @Test
+    @Order(7) // checking that the token gotten from the first request was cached
+    void getToken7() {
+        assertEquals(token, AuthService.getToken());
+    }
+
+    @Test
+    @Order(8) // checking that the token gotten from the first request was cached
+    void getToken8() {
+        assertEquals(token, AuthService.getToken());
+    }
+
+    @Test
+    @Order(9) // checking that the token gotten from the first request was cached
+    void getToken9() {
+        assertEquals(token, AuthService.getToken());
+    }
+
 }

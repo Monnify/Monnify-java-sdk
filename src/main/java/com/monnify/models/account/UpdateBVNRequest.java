@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateBVNRequest {
-    @Pattern(regexp = "\\d{11}", message = "Must be an 11-digit number")
+    @Pattern(regexp = "\\d{11}", message = "BVN must be an 11-digit number")
     @NotBlank(message = "bvn is required")
     private String bvn;
 }
