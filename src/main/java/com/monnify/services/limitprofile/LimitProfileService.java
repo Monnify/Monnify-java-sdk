@@ -89,7 +89,7 @@ public class LimitProfileService {
         Map<String, String> headers = new HashMap<>();
         headers.put("Authorization", "Bearer " + getToken());
 
-        if(StringUtils.isNullOrEmpty(limitProfileCode)) throw new MonnifyValidationException("Invoice reference is empty");
+        if(StringUtils.isNullOrEmpty(limitProfileCode)) throw new MonnifyValidationException("Limit profile code is empty");
         TypeToken<MonnifyBaseResponse<LimitProfileResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<LimitProfileResponse>>() {};
 
