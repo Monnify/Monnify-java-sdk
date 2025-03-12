@@ -39,8 +39,6 @@ public class SettlementService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<SearchResponse<TransactionStatusResponse>> getTransactionsBySettlementReference(String reference, int page, int size) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(reference == null || reference.isEmpty() || size <= 0) {
             throw new MonnifyValidationException("Reference is required, size must be greater than 0");
@@ -55,7 +53,7 @@ public class SettlementService {
 
         return monnifyClient.get(
                 "/api/v1/transactions/find-by-settlement-reference",
-                headers,
+                null,
                 parameters,
                 typeToken
         );
@@ -71,8 +69,6 @@ public class SettlementService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<SettlementResponse> getSettlementInformation(String transactionReference) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<SettlementResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<SettlementResponse>>() {};
@@ -80,7 +76,7 @@ public class SettlementService {
         try {
             return monnifyClient.get(
                     "/api/v1/settlement-detail?transactionReference=" + URLEncoder.encode(transactionReference, StandardCharsets.UTF_8.toString()),
-                    headers,
+                    null,
                     null,
                     typeToken
             );

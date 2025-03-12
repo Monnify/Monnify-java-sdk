@@ -34,8 +34,6 @@ public class VerificationService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<BankValidationResponse> validateBankAccount(String accountNumber, String bankCode) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(accountNumber) || StringUtils.isNullOrEmpty(bankCode)) {
             throw new MonnifyValidationException("Account number or bank code is empty");
@@ -49,7 +47,7 @@ public class VerificationService {
 
         return monnifyClient.get(
                 "/api/v1/disbursements/account/validate",
-                headers,
+                null,
                 parameters,
                 typeToken
         );
@@ -65,8 +63,6 @@ public class VerificationService {
      */
     public MonnifyBaseResponse<BVNVerificationResponse> verifyBVNInformation(BVNVerificationRequest bvnVerificationRequest) {
         ValidationUtil.validate(bvnVerificationRequest);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<BVNVerificationResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<BVNVerificationResponse>>() {};
@@ -74,7 +70,7 @@ public class VerificationService {
         return monnifyClient.post(
                 "/api/v1/vas/bvn-details-match",
                 gson.toJson(bvnVerificationRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -90,8 +86,6 @@ public class VerificationService {
      */
     public MonnifyBaseResponse<BVNAccountMatchResponse> bvnAccountNameMatch(BVNAccountMatchRequest bvnAccountMatchRequest) {
         ValidationUtil.validate(bvnAccountMatchRequest);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<BVNAccountMatchResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<BVNAccountMatchResponse>>() {};
@@ -99,7 +93,7 @@ public class VerificationService {
         return monnifyClient.post(
                 "/api/v1/vas/bvn-account-match",
                 gson.toJson(bvnAccountMatchRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -115,8 +109,6 @@ public class VerificationService {
      */
     public MonnifyBaseResponse<NINVerificationResponse> verifyNIN(NINVerificationRequest ninVerificationRequest) {
         ValidationUtil.validate(ninVerificationRequest);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<NINVerificationResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<NINVerificationResponse>>() {};
@@ -124,7 +116,7 @@ public class VerificationService {
         return monnifyClient.post(
                 "/api/v1/vas/nin-details",
                 gson.toJson(ninVerificationRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );

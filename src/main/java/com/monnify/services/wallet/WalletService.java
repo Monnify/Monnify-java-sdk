@@ -38,8 +38,6 @@ public class WalletService {
     public MonnifyBaseResponse<WalletResponse> createWallet(WalletRequest request) {
         ValidationUtil.validate(request);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<WalletResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<WalletResponse>>() {};
@@ -47,7 +45,7 @@ public class WalletService {
         return monnifyClient.post(
                 "/api/v1/disbursements/wallet",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -62,8 +60,6 @@ public class WalletService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<WalletBalanceResponse> getWalletBalance(String accountNumber) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(accountNumber)) throw new MonnifyValidationException("account number is required");
 
@@ -75,7 +71,7 @@ public class WalletService {
 
         return monnifyClient.get(
                 "/api/v1/disbursements/wallet/balance",
-                headers,
+                null,
                 parameters,
                 typeToken);
     }
@@ -91,8 +87,6 @@ public class WalletService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<SearchResponse<WalletResponse>> getAllWallets(int pageNo, int pageSize, String customerEmail) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("pageSize", String.valueOf(pageSize));
@@ -104,7 +98,7 @@ public class WalletService {
 
         return monnifyClient.get(
                 "/api/v1/disbursements/wallet",
-                headers,
+                null,
                 parameters,
                 typeToken);
     }
@@ -118,8 +112,6 @@ public class WalletService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<SearchResponse<WalletTransactionResponse>> getWalletTransactions(String accountNumber) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("accountNumber", String.valueOf(accountNumber));
@@ -129,7 +121,7 @@ public class WalletService {
 
         return monnifyClient.get(
                 "/api/v1/disbursements/wallet/transactions",
-                headers,
+                null,
                 parameters,
                 typeToken);
     }

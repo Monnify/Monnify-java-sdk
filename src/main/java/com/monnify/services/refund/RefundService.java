@@ -40,8 +40,6 @@ public class RefundService {
      */
     public MonnifyBaseResponse<RefundResponse> initiateRefund(RefundRequest refundRequest) {
         ValidationUtil.validate(refundRequest);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<RefundResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<RefundResponse>>() {};
@@ -49,7 +47,7 @@ public class RefundService {
         return monnifyClient.post(
                 "/api/v1/refunds/initiate-refund",
                 gson.toJson(refundRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -66,8 +64,6 @@ public class RefundService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<RefundResponse> getRefundStatus(String refundReference) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(refundReference)) throw new MonnifyValidationException("refundReference is empty");
         TypeToken<MonnifyBaseResponse<RefundResponse>> typeToken =
@@ -76,7 +72,7 @@ public class RefundService {
         try {
             return monnifyClient.get(
                     "/api/v1/refunds/" + URLEncoder.encode(refundReference, StandardCharsets.UTF_8.toString()),
-                    headers,
+                    null,
                     null,
                     typeToken
             );
@@ -95,8 +91,6 @@ public class RefundService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<SearchResponse<RefundResponse>> getRefunds(Integer page, Integer size) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         Map<String, String> parameters = new HashMap<>();
         if(page != null) {
@@ -111,7 +105,7 @@ public class RefundService {
 
         return monnifyClient.get(
                 "/api/v1/refunds",
-                headers,
+                null,
                 parameters,
                 typeToken
         );

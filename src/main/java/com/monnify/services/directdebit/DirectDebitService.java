@@ -38,16 +38,13 @@ public class DirectDebitService {
      */
     public MonnifyBaseResponse<MandateResponse> createMandate(MandateRequest mandateRequest){
         ValidationUtil.validate(mandateRequest);
-        Map<String,String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
-
         TypeToken<MonnifyBaseResponse<MandateResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<MandateResponse>>() {};
 
         return monnifyClient.post(
                 "/api/v1/direct-debit/mandate/create",
                 gson.toJson(mandateRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -63,8 +60,6 @@ public class DirectDebitService {
      * @throws MonnifyException If encoding exception occurs
      */
     public MonnifyBaseResponse<List<MandateStatusResponse>> getMandate(String mandateReference) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(mandateReference)) throw new MonnifyValidationException("paymentReference is empty");
 
@@ -73,7 +68,7 @@ public class DirectDebitService {
 
         return monnifyClient.get(
                 "/api/v1/direct-debit/mandate/?mandateReferences=" + mandateReference,
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -89,8 +84,6 @@ public class DirectDebitService {
     public MonnifyBaseResponse<MandateDebitResponse> debitMandate(MandateDebitRequest mandateDebitRequest) {
         ValidationUtil.validate(mandateDebitRequest);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<MandateDebitResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<MandateDebitResponse>>() {};
@@ -98,7 +91,7 @@ public class DirectDebitService {
         return monnifyClient.post(
                 "/api/v1/direct-debit/mandate/debit",
                 gson.toJson(mandateDebitRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -114,8 +107,6 @@ public class DirectDebitService {
      * @throws MonnifyException If encoding exception occurs
      */
     public MonnifyBaseResponse<MandateDebitResponse> getDebitStatus(String paymentReference) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(paymentReference)) throw new MonnifyValidationException("paymentReference is empty");
         TypeToken<MonnifyBaseResponse<MandateDebitResponse>> typeToken =
@@ -124,7 +115,7 @@ public class DirectDebitService {
         try {
             return monnifyClient.get(
                     "/api/v1/direct-debit/mandate/debit-status?paymentReference=" + URLEncoder.encode(paymentReference, StandardCharsets.UTF_8.toString()),
-                    headers,
+                    null,
                     null,
                     typeToken
             );
@@ -143,8 +134,6 @@ public class DirectDebitService {
      * @throws MonnifyException If encoding exception occurs
      */
     public MonnifyBaseResponse<MandateResponse> cancelMandate(String mandateCode) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(mandateCode)) throw new MonnifyValidationException("paymentReference is empty");
         TypeToken<MonnifyBaseResponse<MandateResponse>> typeToken =
@@ -154,7 +143,7 @@ public class DirectDebitService {
             return monnifyClient.patch(
                     "/api/v1/direct-debit/mandate/cancel-mandate/" + URLEncoder.encode(mandateCode, StandardCharsets.UTF_8.toString()),
                     "",
-                    headers,
+                    null,
                     null,
                     typeToken
             );

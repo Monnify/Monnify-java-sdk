@@ -39,16 +39,13 @@ public class TransactionService {
      */
     public MonnifyBaseResponse<TransactionResponse> initializeTransaction(TransactionRequest transactionRequest){
         ValidationUtil.validate(transactionRequest);
-        Map<String,String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
-
         TypeToken<MonnifyBaseResponse<TransactionResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<TransactionResponse>>() {};
 
         return monnifyClient.post(
                 "/api/v1/merchant/transactions/init-transaction",
                 gson.toJson(transactionRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -64,16 +61,13 @@ public class TransactionService {
      */
     public MonnifyBaseResponse<BankTransferResponse> payWithBankTransfer(BankTransferRequest bankTransferRequest){
         ValidationUtil.validate(bankTransferRequest);
-        Map<String,String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
-
         TypeToken<MonnifyBaseResponse<BankTransferResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<BankTransferResponse>>() {};
 
         return monnifyClient.post(
                 "/api/v1/merchant/bank-transfer/init-payment",
                 gson.toJson(bankTransferRequest),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -88,8 +82,6 @@ public class TransactionService {
      */
     public MonnifyBaseResponse<ChargeCardResponse> chargeCard(ChargeCardRequest chargeCardRequest) {
         ValidationUtil.validate(chargeCardRequest);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ChargeCardResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ChargeCardResponse>>() {};
@@ -97,7 +89,7 @@ public class TransactionService {
         return monnifyClient.post(
                 "/api/v1/merchant/cards/charge",
                 gson.toJson(chargeCardRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -113,8 +105,6 @@ public class TransactionService {
      */
     public MonnifyBaseResponse<TransactionStatusResponse> chargeCardToken(ChargeCardTokenRequest chargeCardTokenRequest) {
         ValidationUtil.validate(chargeCardTokenRequest);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<TransactionStatusResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<TransactionStatusResponse>>() {};
@@ -122,7 +112,7 @@ public class TransactionService {
         return monnifyClient.post(
                 "/api/v1/merchant/cards/charge-card-token",
                 gson.toJson(chargeCardTokenRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -138,8 +128,6 @@ public class TransactionService {
      */
     public MonnifyBaseResponse<ChargeCardResponse> authorizeCardOtp(AuthorizeOtpRequest authorizeOtpRequest) {
         ValidationUtil.validate(authorizeOtpRequest);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ChargeCardResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ChargeCardResponse>>() {};
@@ -147,7 +135,7 @@ public class TransactionService {
         return monnifyClient.post(
                 "/api/v1/merchant/cards/otp/authorize",
                 gson.toJson(authorizeOtpRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -177,8 +165,6 @@ public class TransactionService {
             Float fromAmount, Float toAmount, Float amount, String customerName,
             String customerEmail, String paymentStatusParam, Long fromTimestamp, Long toTimestamp
     ) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         Map<String, String> parameters = new HashMap<>();
         if(page != null) {
@@ -203,7 +189,7 @@ public class TransactionService {
 
         return monnifyClient.get(
                 "/api/v1/transactions/search",
-                headers,
+                null,
                 parameters,
                 typeToken
         );
@@ -222,15 +208,13 @@ public class TransactionService {
         if(StringUtils.isNullOrEmpty(transactionReference)) {
             throw new MonnifyValidationException("TransactionReference is null or empty.");
         }
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         String endpoint = String.format("/api/v2/transactions/%s", URLEncoder.encode(transactionReference));
 
         TypeToken<MonnifyBaseResponse<TransactionStatusResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<TransactionStatusResponse>>() {};
 
-        return monnifyClient.get(endpoint, headers, null, typeToken);
+        return monnifyClient.get(endpoint, null, null, typeToken);
     }
 
     /**
@@ -252,8 +236,6 @@ public class TransactionService {
             throw new MonnifyValidationException("Please use either payment or transaction reference, to avoid unexpected behaviour");
         }
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         Map<String, String> parameters = new HashMap<>();
 
@@ -270,7 +252,7 @@ public class TransactionService {
 
         return monnifyClient.get(
                 "/api/v2/merchant/transactions/query",
-                headers,
+                null,
                 parameters,
                 typeToken
         );

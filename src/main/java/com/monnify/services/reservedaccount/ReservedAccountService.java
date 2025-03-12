@@ -47,8 +47,6 @@ public class ReservedAccountService {
         if(!request.isGetAllAvailableBanks() && request.getPreferredBanks().isEmpty()){
             throw new MonnifyValidationException("Please provide at least one preferred bank");
         }
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ReservedAccountResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ReservedAccountResponse>>() {};
@@ -56,7 +54,7 @@ public class ReservedAccountService {
         return monnifyClient.post(
                 "/api/v2/bank-transfer/reserved-accounts",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -72,8 +70,6 @@ public class ReservedAccountService {
      */
     public MonnifyBaseResponse<ReservedAccountResponse> createReservedAccountInvoice(ReservedAccountRequest request) {
         ValidationUtil.validate(request);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ReservedAccountResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ReservedAccountResponse>>() {};
@@ -81,7 +77,7 @@ public class ReservedAccountService {
         return monnifyClient.post(
                 "/api/v1/bank-transfer/reserved-accounts",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -101,8 +97,6 @@ public class ReservedAccountService {
         if(!request.isGetAllAvailableBanks() && request.getPreferredBanks().isEmpty()){
             throw new MonnifyValidationException("Please provide at least one preferred bank");
         }
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ReservedAccountResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ReservedAccountResponse>>() {};
@@ -110,7 +104,7 @@ public class ReservedAccountService {
         return monnifyClient.post(
                 "/api/v2/bank-transfer/reserved-accounts/limit",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -126,8 +120,6 @@ public class ReservedAccountService {
      */
     public MonnifyBaseResponse<ReservedAccountResponse> updateReservedAccountLimit(UpdateReservedAccountLimitRequest request) {
         ValidationUtil.validate(request);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ReservedAccountResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ReservedAccountResponse>>() {};
@@ -135,7 +127,7 @@ public class ReservedAccountService {
         return monnifyClient.put(
                 "/api/v2/bank-transfer/reserved-accounts/limit",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -152,8 +144,6 @@ public class ReservedAccountService {
      */
     public MonnifyBaseResponse<ReservedAccountResponse> getReservedAccountDetails(String accountReference) {
         if(StringUtils.isNullOrEmpty(accountReference)) throw new MonnifyValidationException("Please provide an account reference");
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ReservedAccountResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ReservedAccountResponse>>() {};
@@ -161,7 +151,7 @@ public class ReservedAccountService {
         try {
             return monnifyClient.get(
                     "/api/v2/bank-transfer/reserved-accounts/"+ URLEncoder.encode(accountReference, StandardCharsets.UTF_8.toString()),
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {
@@ -187,8 +177,6 @@ public class ReservedAccountService {
         if(!request.isGetAllAvailableBanks() && request.getPreferredBanks().isEmpty()){
             throw new MonnifyValidationException("Please provide at least one preferred bank");
         }
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ReservedAccountResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ReservedAccountResponse>>() {};
@@ -197,7 +185,7 @@ public class ReservedAccountService {
             return monnifyClient.put(
                     "/api/v1/bank-transfer/reserved-accounts/add-linked-accounts/"+ URLEncoder.encode(accountReference, StandardCharsets.UTF_8.toString()),
                     gson.toJson(request),
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {
@@ -219,8 +207,6 @@ public class ReservedAccountService {
     public MonnifyBaseResponse<ReservedAccountResponse> updateBVN(UpdateBVNRequest request, String accountReference) {
         ValidationUtil.validate(request);
         if(StringUtils.isNullOrEmpty(accountReference)) throw new MonnifyValidationException("Please provide an account reference");
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ReservedAccountResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ReservedAccountResponse>>() {};
@@ -229,7 +215,7 @@ public class ReservedAccountService {
             return monnifyClient.put(
                     "/api/v1/bank-transfer/reserved-accounts/update-customer-bvn/"+ URLEncoder.encode(accountReference, StandardCharsets.UTF_8.toString()),
                     gson.toJson(request),
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {
@@ -250,8 +236,6 @@ public class ReservedAccountService {
     public MonnifyBaseResponse<ReservedAccountResponse> deallocateReservedAccount(String accountReference) {
         if(StringUtils.isNullOrEmpty(accountReference)) throw new MonnifyValidationException("Please provide an account reference");
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ReservedAccountResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ReservedAccountResponse>>() {};
@@ -260,7 +244,7 @@ public class ReservedAccountService {
             return monnifyClient.delete(
                     "/api/v1/bank-transfer/reserved-accounts/reference/"+ URLEncoder.encode(accountReference, StandardCharsets.UTF_8.toString()),
                     "",
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {
@@ -282,8 +266,6 @@ public class ReservedAccountService {
     public MonnifyBaseResponse<AllowedPaymentSourcesResponse> updateAllowedPaymentSources(AllowedPaymentSourcesRequest request, String accountReference) {
         ValidationUtil.validate(request);
         if(StringUtils.isNullOrEmpty(accountReference)) throw new MonnifyValidationException("Please provide an account reference");
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<AllowedPaymentSourcesResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<AllowedPaymentSourcesResponse>>() {};
@@ -292,7 +274,7 @@ public class ReservedAccountService {
             return monnifyClient.put(
                     "/api/v1/bank-transfer/reserved-accounts/update-payment-source-filter/" + URLEncoder.encode(accountReference, StandardCharsets.UTF_8.toString()),
                     gson.toJson(request),
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {
@@ -314,8 +296,6 @@ public class ReservedAccountService {
     public MonnifyBaseResponse<SplitConfigResponse> updateSplitConfig(List<IncomeSplitConfig> request, String accountReference) {
         ValidationUtil.validate(request);
         if (StringUtils.isNullOrEmpty(accountReference)) throw new MonnifyValidationException("Please provide an account reference");
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<SplitConfigResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<SplitConfigResponse>>() {};
@@ -324,7 +304,7 @@ public class ReservedAccountService {
             return monnifyClient.put(
                     "/api/v1/bank-transfer/reserved-accounts/update-income-split-config/" + URLEncoder.encode(accountReference, StandardCharsets.UTF_8.toString()),
                     gson.toJson(request),
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {
@@ -345,8 +325,6 @@ public class ReservedAccountService {
      */
     public MonnifyBaseResponse<SearchResponse<TransactionRecord>> getReservedAccountTransactions(String accountReference, Integer page, Integer size) {
         if (StringUtils.isNullOrEmpty(accountReference)) throw new MonnifyValidationException("Please provide an account reference");
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         Map<String, String> parameters = new HashMap<>();
         if(page != null) {
@@ -362,7 +340,7 @@ public class ReservedAccountService {
 
         return monnifyClient.get(
                 "/api/v1/bank-transfer/reserved-accounts/transactions",
-                headers,
+                null,
                 parameters,
                 typeToken);
     }
@@ -387,8 +365,6 @@ public class ReservedAccountService {
             throw new MonnifyValidationException("Please provide an nin or bvn to make this request");
         }
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<KycInfoResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<KycInfoResponse>>() {};
@@ -397,7 +373,7 @@ public class ReservedAccountService {
             return monnifyClient.put(
                     "/api/v1/bank-transfer/reserved-accounts/" + URLEncoder.encode(accountReference, StandardCharsets.UTF_8.toString()) + "/kyc-info",
                     gson.toJson(request),
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {

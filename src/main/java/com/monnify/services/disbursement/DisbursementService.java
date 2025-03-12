@@ -39,8 +39,6 @@ public class DisbursementService {
     public MonnifyBaseResponse<SingleDisbursementResponse> disburseSingle(SingleDisbursementRequest request) {
         ValidationUtil.validate(request);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<SingleDisbursementResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<SingleDisbursementResponse>>() {};
@@ -48,7 +46,7 @@ public class DisbursementService {
         return monnifyClient.post(
                 "/api/v2/disbursements/single",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -63,8 +61,6 @@ public class DisbursementService {
     public MonnifyBaseResponse<BatchDisbursementResponse> disburseBatch(BatchDisbursementRequest request) {
         ValidationUtil.validate(request);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<BatchDisbursementResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<BatchDisbursementResponse>>() {};
@@ -72,7 +68,7 @@ public class DisbursementService {
         return monnifyClient.post(
                 "/api/v2/disbursements/batch",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -87,8 +83,6 @@ public class DisbursementService {
     public MonnifyBaseResponse<SingleDisbursementResponse> validateDisbursementOtp(ValidateOtpRequest request) {
         ValidationUtil.validate(request);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<SingleDisbursementResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<SingleDisbursementResponse>>() {};
@@ -96,7 +90,7 @@ public class DisbursementService {
         return monnifyClient.post(
                 "/api/v2/disbursements/single/validate-otp",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -111,8 +105,6 @@ public class DisbursementService {
     public MonnifyBaseResponse<BatchDisbursementResponse> validateBatchDisbursementOtp(ValidateOtpRequest request) {
         ValidationUtil.validate(request);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<BatchDisbursementResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<BatchDisbursementResponse>>() {};
@@ -120,7 +112,7 @@ public class DisbursementService {
         return monnifyClient.post(
                 "/api/v2/disbursements/batch/validate-otp",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -135,8 +127,6 @@ public class DisbursementService {
     public MonnifyBaseResponse<ResendOtpResponse> resendDisbursementOtp(ResendOtpRequest request) {
         ValidationUtil.validate(request);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<ResendOtpResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<ResendOtpResponse>>() {};
@@ -144,7 +134,7 @@ public class DisbursementService {
         return monnifyClient.post(
                 "/api/v2/disbursements/single/resend-otp",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -158,8 +148,6 @@ public class DisbursementService {
      * @throws MonnifyValidationException If reference is null or empty
      */
     public MonnifyBaseResponse<DisbursementSummaryResponse> getDisbursementSummary(String reference) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(reference)) throw new MonnifyValidationException("reference is null or empty");
         Map<String, String> parameters = new HashMap<>();
@@ -170,7 +158,7 @@ public class DisbursementService {
 
         return monnifyClient.get(
                 "/api/v2/disbursements/single/summary",
-                headers,
+                null,
                 parameters,
                 typeToken);
     }
@@ -184,8 +172,6 @@ public class DisbursementService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<SearchResponse<DisbursementSummaryResponse>> getAllSingleDisbursements(Integer pageSize, Integer pageNo){
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         Map<String, String> parameters = new HashMap<>();
         if(pageNo != null) {
@@ -200,7 +186,7 @@ public class DisbursementService {
 
         return monnifyClient.get(
                 "/api/v2/disbursements/single/transactions",
-                headers,
+                null,
                 parameters,
                 typeToken);
     }
@@ -214,8 +200,6 @@ public class DisbursementService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<SearchResponse<BatchDisbursementResponse>> getAllBulkDisbursements(Integer pageSize, Integer pageNo){
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         Map<String, String> parameters = new HashMap<>();
         if(pageNo != null) {
@@ -230,7 +214,7 @@ public class DisbursementService {
 
         return monnifyClient.get(
                 "/api/v2/disbursements/bulk/transactions",
-                headers,
+                null,
                 parameters,
                 typeToken);
     }
@@ -247,8 +231,6 @@ public class DisbursementService {
      * @throws MonnifyException If encoding exception occurs
      */
     public MonnifyBaseResponse<SearchResponse<DisbursementSummaryResponse>> getBulkTransferTransactions(String batchReference, Integer pageSize, Integer pageNo){
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(batchReference)) throw new MonnifyValidationException("batchReference is null or empty");
 
@@ -266,7 +248,7 @@ public class DisbursementService {
         try {
             return monnifyClient.get(
                     "/api/v2/disbursements/bulk/" + URLEncoder.encode(batchReference, StandardCharsets.UTF_8.toString()) + "/transactions",
-                    headers,
+                    null,
                     parameters,
                     typeToken);
         } catch (UnsupportedEncodingException e) {
@@ -292,15 +274,13 @@ public class DisbursementService {
         queryParams.put("amountFrom", request.getAmountFrom());
         queryParams.put("amountTo", request.getAmountTo());
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<SearchResponse<TransferDetails>>> typeToken =
                 new TypeToken<MonnifyBaseResponse<SearchResponse<TransferDetails>>>() {};
 
         return monnifyClient.get(
                 "/api/v2/disbursements/search-transactions",
-                headers,
+                null,
                 queryParams,
                 typeToken
         );

@@ -41,8 +41,6 @@ public class InvoiceService {
     public MonnifyBaseResponse<InvoiceResponse> createInvoice(InvoiceRequest request) {
         ValidationUtil.validate(request);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<InvoiceResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<InvoiceResponse>>() {};
@@ -50,7 +48,7 @@ public class InvoiceService {
         return monnifyClient.post(
                 "/api/v1/invoice/create",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -65,8 +63,6 @@ public class InvoiceService {
      * @throws MonnifyException If encoding exception occurs
      */
     public MonnifyBaseResponse<InvoiceResponse> viewInvoiceDetails(String invoiceReference) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(invoiceReference)) throw new MonnifyValidationException("Invoice reference is empty");
         TypeToken<MonnifyBaseResponse<InvoiceResponse>> typeToken =
@@ -75,7 +71,7 @@ public class InvoiceService {
         try {
             return monnifyClient.get(
                     "/api/v1/invoice/" + URLEncoder.encode(invoiceReference, StandardCharsets.UTF_8.toString()) + "/details",
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {
@@ -92,8 +88,6 @@ public class InvoiceService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<SearchResponse<InvoiceResponse>> getAllInvoices(int page, int size) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("page", String.valueOf(page));
@@ -104,7 +98,7 @@ public class InvoiceService {
 
         return monnifyClient.get(
                 "/api/v1/invoice/all",
-                headers,
+                null,
                 parameters,
                 typeToken);
     }
@@ -119,8 +113,6 @@ public class InvoiceService {
      * @throws MonnifyException If encoding exception occurs
      */
     public MonnifyBaseResponse<InvoiceResponse> cancelInvoice(String invoiceReference) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(invoiceReference)) throw new MonnifyValidationException("Invoice reference is empty");
         TypeToken<MonnifyBaseResponse<InvoiceResponse>> typeToken =
@@ -130,7 +122,7 @@ public class InvoiceService {
             return monnifyClient.delete(
                     "/api/v1/invoice/" + URLEncoder.encode(invoiceReference, StandardCharsets.UTF_8.toString()) + "/cancel",
                     "",
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {

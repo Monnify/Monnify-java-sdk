@@ -39,8 +39,6 @@ public class LimitProfileService {
     public MonnifyBaseResponse<LimitProfileResponse> createLimitProfile(LimitProfileRequest request) {
         ValidationUtil.validate(request);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<LimitProfileResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<LimitProfileResponse>>() {};
@@ -48,7 +46,7 @@ public class LimitProfileService {
         return monnifyClient.post(
                 "/api/v1/limit-profile",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -60,15 +58,13 @@ public class LimitProfileService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<SearchResponse<LimitProfileResponse>> getLimitProfiles() {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<SearchResponse<LimitProfileResponse>>> typeToken =
                 new TypeToken<MonnifyBaseResponse<SearchResponse<LimitProfileResponse>>>() {};
 
         return monnifyClient.get(
                 "/api/v1/limit-profile",
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -86,8 +82,6 @@ public class LimitProfileService {
     public MonnifyBaseResponse<LimitProfileResponse> updateLimitProfile(String limitProfileCode, LimitProfileRequest request) {
         ValidationUtil.validate(request);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(limitProfileCode)) throw new MonnifyValidationException("Limit profile code is empty");
         TypeToken<MonnifyBaseResponse<LimitProfileResponse>> typeToken =
@@ -97,7 +91,7 @@ public class LimitProfileService {
             return monnifyClient.put(
                     "/api/v1/limit-profile/" + URLEncoder.encode(limitProfileCode, StandardCharsets.UTF_8.toString()),
                     gson.toJson(request),
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {

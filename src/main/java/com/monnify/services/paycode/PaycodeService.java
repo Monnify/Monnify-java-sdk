@@ -39,8 +39,6 @@ public class PaycodeService {
     public MonnifyBaseResponse<PaycodeResponse> createPaycode(PaycodeRequest request) {
         ValidationUtil.validate(request);
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<PaycodeResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<PaycodeResponse>>() {};
@@ -48,7 +46,7 @@ public class PaycodeService {
         return monnifyClient.post(
                 "/api/v1/paycode",
                 gson.toJson(request),
-                headers,
+                null,
                 null,
                 typeToken);
     }
@@ -64,8 +62,6 @@ public class PaycodeService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<PaycodeResponse> getPaycode(String paycodeReference) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(paycodeReference)) throw new MonnifyValidationException("paycodeReference is empty");
         TypeToken<MonnifyBaseResponse<PaycodeResponse>> typeToken =
@@ -74,7 +70,7 @@ public class PaycodeService {
         try {
             return monnifyClient.get(
                     "/api/v1/paycode/" + URLEncoder.encode(paycodeReference, StandardCharsets.UTF_8.toString()),
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {
@@ -93,8 +89,6 @@ public class PaycodeService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<PaycodeResponse> getClearPaycode(String paycodeReference) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(paycodeReference)) throw new MonnifyValidationException("paycodeReference is empty");
         TypeToken<MonnifyBaseResponse<PaycodeResponse>> typeToken =
@@ -103,7 +97,7 @@ public class PaycodeService {
         try {
             return monnifyClient.get(
                     "/api/v1/paycode/" + URLEncoder.encode(paycodeReference, StandardCharsets.UTF_8.toString()) + "/authorize",
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {
@@ -124,8 +118,6 @@ public class PaycodeService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<SearchResponse<PaycodeResponse>> fetchPaycodes(String transactionReference, String beneficiaryName, String transactionStatus, long from, long to) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("transactionReference", transactionReference);
@@ -139,7 +131,7 @@ public class PaycodeService {
 
         return monnifyClient.get(
                 "/api/v1/paycode",
-                headers,
+                null,
                 parameters,
                 typeToken);
     }
@@ -155,8 +147,6 @@ public class PaycodeService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<PaycodeResponse> deletePaycode(String paycodeReference) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         if(StringUtils.isNullOrEmpty(paycodeReference)) throw new MonnifyValidationException("paycodeReference is empty");
         TypeToken<MonnifyBaseResponse<PaycodeResponse>> typeToken =
@@ -166,7 +156,7 @@ public class PaycodeService {
             return monnifyClient.delete(
                     "/api/v1/paycode/" + URLEncoder.encode(paycodeReference, StandardCharsets.UTF_8.toString()),
                     "",
-                    headers,
+                    null,
                     null,
                     typeToken);
         } catch (UnsupportedEncodingException e) {

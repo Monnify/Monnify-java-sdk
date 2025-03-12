@@ -40,8 +40,6 @@ public class SubAccountService {
      */
     public MonnifyBaseResponse<List<SubAccountResponse>> createSubAccounts(List<SubAccountRequest> subAccountRequests) {
         ValidationUtil.validate(subAccountRequests);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<List<SubAccountResponse>>> typeToken =
                 new TypeToken<MonnifyBaseResponse<List<SubAccountResponse>>>() {};
@@ -49,7 +47,7 @@ public class SubAccountService {
         return monnifyClient.post(
                 "/api/v1/sub-accounts",
                 gson.toJson(subAccountRequests),
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -68,8 +66,6 @@ public class SubAccountService {
     public MonnifyBaseResponse<Void> deleteSubAccount(String subAccountCode) {
         if(StringUtils.isNullOrEmpty(subAccountCode)) throw new MonnifyValidationException("subAccountCode is empty");
 
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<Void>> typeToken =
                 new TypeToken<MonnifyBaseResponse<Void>>() {};
@@ -78,7 +74,7 @@ public class SubAccountService {
             return monnifyClient.delete(
                     "/api/v1/sub-accounts/" + URLEncoder.encode(subAccountCode, StandardCharsets.UTF_8.toString()),
                     "",
-                    headers,
+                    null,
                     null,
                     typeToken
             );
@@ -95,15 +91,13 @@ public class SubAccountService {
      * @author Oreoluwa Somuyiwa
      */
     public MonnifyBaseResponse<List<SubAccountResponse>> getSubAccounts() {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<List<SubAccountResponse>>> typeToken =
                 new TypeToken<MonnifyBaseResponse<List<SubAccountResponse>>>() {};
 
         return monnifyClient.get(
                 "/api/v1/sub-accounts",
-                headers,
+                null,
                 null,
                 typeToken
         );
@@ -119,8 +113,6 @@ public class SubAccountService {
      */
     public MonnifyBaseResponse<SubAccountResponse> updateSubAccount(UpdateSubAccountRequest updateSubAccountRequest) {
         ValidationUtil.validate(updateSubAccountRequest);
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", "Bearer " + getToken());
 
         TypeToken<MonnifyBaseResponse<SubAccountResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<SubAccountResponse>>() {};
@@ -128,7 +120,7 @@ public class SubAccountService {
         return monnifyClient.put(
                 "/api/v1/sub-accounts",
                 gson.toJson(updateSubAccountRequest),
-                headers,
+                null,
                 null,
                 typeToken
         );
