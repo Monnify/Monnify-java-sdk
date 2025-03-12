@@ -1,6 +1,8 @@
 package com.monnify.models.transaction;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -11,4 +13,32 @@ public class ChargeCardResponse {
     private String transactionReference;
     private String status;
     private String message;
+    private OtpData otpData;
+    private Secure3dData secure3dData;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class OtpData {
+        private String id;
+        private String message;
+        private String authData;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Secure3dData {
+        private String id;
+        private String redirectURL;
+        private String callBackURL;
+        private String eciFlag;
+        private String termURL;
+        private String acsURL;
+        private String transactionID;
+        private String paymentID;
+        private String method;
+        private String jwt;
+        private String md;
+    }
 }
