@@ -31,6 +31,7 @@ public class InvoiceService {
     private static final Gson gson = new Gson();
     private static final MonnifyClient monnifyClient = new MonnifyClient();
 
+
     /**
      * Creates a new invoice.
      *
@@ -41,6 +42,32 @@ public class InvoiceService {
     public MonnifyBaseResponse<InvoiceResponse> createInvoice(InvoiceRequest request) {
         ValidationUtil.validate(request);
 
+
+        TypeToken<MonnifyBaseResponse<InvoiceResponse>> typeToken =
+                new TypeToken<MonnifyBaseResponse<InvoiceResponse>>() {};
+
+        return monnifyClient.post(
+                "/api/v1/invoice/create",
+                gson.toJson(request),
+                null,
+                null,
+                typeToken);
+    }
+
+    /**
+     * This endpoint attaches a invoice-type reserved account to a new invoice.
+     *
+     * @param request The invoice request payload.
+     * @return A {@link MonnifyBaseResponse} containing the created invoice details as {@link InvoiceResponse}
+     * @throws MonnifyValidationException If account reference is null
+     * @author Oreoluwa Somuyiwa
+     */
+    public MonnifyBaseResponse<InvoiceResponse> attachInvoiceToReservedAccount(InvoiceRequest request) {
+        ValidationUtil.validate(request);
+
+        if (StringUtils.isNullOrEmpty(request.getAccountReference())){
+            throw new MonnifyValidationException("Please provide an account reference of an invoice reserved account.");
+        }
 
         TypeToken<MonnifyBaseResponse<InvoiceResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<InvoiceResponse>>() {};
