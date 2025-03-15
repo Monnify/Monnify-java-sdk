@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.monnify.services.auth.AuthService.getToken;
+import static com.monnify.utils.StringUtils.returnEmptyIfNull;
 
 /**
  * The {@link PaycodeService} class provides methods to interact with the Monnify API
@@ -120,11 +121,21 @@ public class PaycodeService {
     public MonnifyBaseResponse<SearchResponse<PaycodeResponse>> fetchPaycodes(String transactionReference, String beneficiaryName, String transactionStatus, long from, long to) {
 
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("transactionReference", transactionReference);
-        parameters.put("beneficiaryName", beneficiaryName);
-        parameters.put("transactionStatus", transactionStatus);
-        parameters.put("from", String.valueOf(from));
-        parameters.put("to", String.valueOf(to));
+        if (!StringUtils.isNullOrEmpty(transactionReference)) {
+            parameters.put("transactionReference", transactionReference);
+        }
+        if (!StringUtils.isNullOrEmpty(beneficiaryName)) {
+            parameters.put("beneficiaryName", beneficiaryName);
+        }
+        if (!StringUtils.isNullOrEmpty(transactionStatus)) {
+            parameters.put("transactionStatus", transactionStatus);
+        }
+        if(from > 0){
+            parameters.put("from", String.valueOf(from));
+        }
+        if(to > 0){
+            parameters.put("to", String.valueOf(to));
+        }
 
         TypeToken<MonnifyBaseResponse<SearchResponse<PaycodeResponse>>> typeToken =
                 new TypeToken<MonnifyBaseResponse<SearchResponse<PaycodeResponse>>>() {};

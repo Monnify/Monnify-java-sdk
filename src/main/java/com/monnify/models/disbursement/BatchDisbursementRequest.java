@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -26,8 +27,8 @@ public class BatchDisbursementRequest {
     @NotBlank(message = "sourceAccountNumber is required")
     private String sourceAccountNumber;
 
-    @NotBlank(message = "onValidationFailure is required")
-    private String onValidationFailure;
+    @NotNull(message = "onValidationFailure is required")
+    private OnValidationFailure onValidationFailure;
 
     private Integer notificationInterval;
 

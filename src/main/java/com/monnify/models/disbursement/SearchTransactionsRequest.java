@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SearchTransactionsRequest {
     private String sourceAccountNumber;
-    private int pageSize;
-    private int pageNo;
+    private Integer pageSize;
+    private Integer pageNo;
     private String startDate;
     private String endDate;
     private String amountFrom;

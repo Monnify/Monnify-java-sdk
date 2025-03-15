@@ -266,14 +266,33 @@ public class DisbursementService {
      */
     public MonnifyBaseResponse<SearchResponse<TransferDetails>> searchTransactions(SearchTransactionsRequest request) {
         Map<String, String> queryParams = new HashMap<>();
-        queryParams.put("sourceAccountNumber", request.getSourceAccountNumber());
-        queryParams.put("pageSize", String.valueOf(request.getPageSize()));
-        queryParams.put("pageNo", String.valueOf(request.getPageNo()));
-        queryParams.put("startDate", request.getStartDate());
-        queryParams.put("endDate", request.getEndDate());
-        queryParams.put("amountFrom", request.getAmountFrom());
-        queryParams.put("amountTo", request.getAmountTo());
+        if (!StringUtils.isNullOrEmpty(request.getSourceAccountNumber())) {
+            queryParams.put("sourceAccountNumber", request.getSourceAccountNumber());
+        }
 
+        if (request.getPageSize() != null) {
+            queryParams.put("pageSize", String.valueOf(request.getPageSize()));
+        }
+
+        if (request.getPageNo() != null) {
+            queryParams.put("pageNo", String.valueOf(request.getPageNo()));
+        }
+
+        if (!StringUtils.isNullOrEmpty(request.getStartDate())) {
+            queryParams.put("startDate", request.getStartDate());
+        }
+
+        if (!StringUtils.isNullOrEmpty(request.getEndDate())) {
+            queryParams.put("endDate", request.getEndDate());
+        }
+
+        if (request.getAmountFrom() != null) {
+            queryParams.put("amountFrom", request.getAmountFrom());
+        }
+
+        if (request.getAmountTo() != null) {
+            queryParams.put("amountTo", request.getAmountTo());
+        }
 
         TypeToken<MonnifyBaseResponse<SearchResponse<TransferDetails>>> typeToken =
                 new TypeToken<MonnifyBaseResponse<SearchResponse<TransferDetails>>>() {};
