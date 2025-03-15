@@ -7,6 +7,7 @@ import com.monnify.exceptions.MonnifyValidationException;
 import com.monnify.models.MonnifyBaseResponse;
 import com.monnify.models.SearchResponse;
 import com.monnify.models.disbursement.*;
+import com.monnify.models.wallet.WalletBalanceResponse;
 import com.monnify.utils.MonnifyClient;
 import com.monnify.utils.StringUtils;
 import com.monnify.utils.ValidationUtil;
@@ -257,6 +258,29 @@ public class DisbursementService {
     }
 
     /**
+     * Retrieves the summary of a bulk disbursement transaction.
+     *
+     * @param batchReference The unique reference of the batch disbursement.
+     * @return A {@link MonnifyBaseResponse} containing a {@link BulkDisbursementSummary}.
+     * @author Oreoluwa Somuyiwa
+     * @throws MonnifyValidationException If batchReference is null or empty
+     */
+    public MonnifyBaseResponse<BulkDisbursementSummary> getBulkTransferStatus(String batchReference){
+        if(StringUtils.isNullOrEmpty(batchReference)) throw new MonnifyValidationException("batchReference is null or empty");
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("reference", batchReference);
+
+        TypeToken<MonnifyBaseResponse<BulkDisbursementSummary>> typeToken =
+                new TypeToken<MonnifyBaseResponse<BulkDisbursementSummary>>() {};
+
+        return monnifyClient.get(
+                "/api/v2/disbursements/batch/summary",
+                null,
+                parameters,
+                typeToken);
+    }
+
+    /**
      * Searches for disbursement transactions based on filters such as source account number,
      * date range, and amount range.
      *
@@ -303,5 +327,29 @@ public class DisbursementService {
                 queryParams,
                 typeToken
         );
+    }
+
+    /**
+     * Retrieves the balance of a Merchant's wallet using their wallet account number.
+     *
+     * @param walletAccountNumber The account number of the merchant's wallet.
+     * @return A {@link MonnifyBaseResponse} object containing the response from the Monnify API,
+     *         including the wallet balance details in the {@link WalletBalanceResponse} object.
+     * @throws MonnifyValidationException If walletAccountNumber is null or empty
+     * @author Oreoluwa Somuyiwa
+     */
+    public MonnifyBaseResponse<WalletBalanceResponse> getWalletBalance(String walletAccountNumber){
+        if(StringUtils.isNullOrEmpty(walletAccountNumber)) throw new MonnifyValidationException("walletAccountNumber is null or empty");
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("accountNumber", walletAccountNumber);
+
+        TypeToken<MonnifyBaseResponse<WalletBalanceResponse>> typeToken =
+                new TypeToken<MonnifyBaseResponse<WalletBalanceResponse>>() {};
+
+        return monnifyClient.get(
+                "/api/v2/disbursements/wallet-balance",
+                null,
+                parameters,
+                typeToken);
     }
 }
