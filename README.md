@@ -75,7 +75,7 @@ request.setGetAllAvailableBanks(true);
 
 MonnifyBaseResponse<ReservedAccountResponse> response = reservedAccountService.createReservedAccount(request);
 if (response.isRequestSuccessful()) {
-    System.out.println("Reserved Account Created: " + response.getResponseBody().getAccountNumber());
+    System.out.println("Reserved Account Created");
 }
 ```
 
@@ -84,7 +84,7 @@ if (response.isRequestSuccessful()) {
 ```java
 MonnifyBaseResponse<ReservedAccountResponse> response = reservedAccountService.getReservedAccountDetails("account-reference");
 if (response.isRequestSuccessful()) {
-    System.out.println("Account Found: " + response.getResponseBody().getAccountName());
+    System.out.println("Account Found: " + response.toString());
 }
 ```
 
