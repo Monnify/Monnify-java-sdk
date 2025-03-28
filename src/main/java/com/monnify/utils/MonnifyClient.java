@@ -9,13 +9,10 @@ import okhttp3.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.google.gson.reflect.TypeToken;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.monnify.Monnify.getBaseUrl;
 import static com.monnify.services.auth.AuthService.getToken;
@@ -23,7 +20,6 @@ import static com.monnify.services.auth.AuthService.getToken;
 public class MonnifyClient {
     private final OkHttpClient client = new OkHttpClient();
     private static final MediaType JSON = MediaType.get("application/json");
-    private static final Logger logger = LoggerFactory.getLogger(MonnifyClient.class);
     private static final Gson gson = new Gson();
 
     public <T> MonnifyBaseResponse<T> post(String path, String body, Map<String, String> headers, Map<String, String> parameters, TypeToken<MonnifyBaseResponse<T>> typeToken) {
@@ -87,7 +83,6 @@ public class MonnifyClient {
             assert response.body() != null;
             String responseBody = response.body().string();
             if (!response.isSuccessful()) {
-                logger.error("Request failed: Status Code = {}, Response Body = {}", response.code(), responseBody);
                 monnifyBaseResponse = gson.fromJson(responseBody, typeToken.getType());
                 return monnifyBaseResponse;
             }

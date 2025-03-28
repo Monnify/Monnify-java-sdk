@@ -6,7 +6,7 @@
 
     <groupId>com.monnify</groupId>
     <artifactId>monnify-java-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>Monnify Java SDK</name>
     <description>A Java library built to simplify integrating the Monnify API into your application.</description>
     <url>https://developers.monnify.com/docs/integration-tools/sdk</url>
@@ -69,16 +69,6 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.13.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.36</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>

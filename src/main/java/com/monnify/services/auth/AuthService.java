@@ -7,8 +7,6 @@ import com.monnify.models.MonnifyBaseResponse;
 import com.monnify.models.auth.AuthResponse;
 import com.monnify.exceptions.MonnifyException;
 import okhttp3.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
