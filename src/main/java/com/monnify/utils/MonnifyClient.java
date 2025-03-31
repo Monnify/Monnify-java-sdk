@@ -82,10 +82,6 @@ public class MonnifyClient {
         try (Response response = client.newCall(requestBuilder.build()).execute()) {
             assert response.body() != null;
             String responseBody = response.body().string();
-            if (!response.isSuccessful()) {
-                monnifyBaseResponse = gson.fromJson(responseBody, typeToken.getType());
-                return monnifyBaseResponse;
-            }
 
             // Use the TypeToken provided to parse the response
             monnifyBaseResponse = gson.fromJson(responseBody, typeToken.getType());
