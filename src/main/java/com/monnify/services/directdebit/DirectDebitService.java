@@ -135,7 +135,7 @@ public class DirectDebitService {
      */
     public MonnifyBaseResponse<MandateResponse> cancelMandate(String mandateCode) {
 
-        if(StringUtils.isNullOrEmpty(mandateCode)) throw new MonnifyValidationException("paymentReference is empty");
+        if(StringUtils.isNullOrEmpty(mandateCode)) throw new MonnifyValidationException("mandateCode is empty");
         TypeToken<MonnifyBaseResponse<MandateResponse>> typeToken =
                 new TypeToken<MonnifyBaseResponse<MandateResponse>>() {};
 
