@@ -27,10 +27,10 @@ class SubAccountServiceTest {
     private static String subAccountCode = "";
     private static final SubAccountRequest subAccountRequest = SubAccountRequest
             .builder()
-            .accountNumber("9067513464")
-            .bankCode("50515")
+            .accountNumber("0104430292")
+            .bankCode("044")
             .currencyCode("NGN")
-            .email("johndoes@gmail.com")
+            .email("johndoes@example.com")
             .defaultSplitPercentage(12)
             .build();
 
@@ -57,7 +57,7 @@ class SubAccountServiceTest {
                                 .accountNumber("9067513464")
                                 .email("johndoes@gmail.com")
                                 .bankCode("50515")
-                        .subAccountCode(subAccountCode).defaultSplitPercentage(30).build());
+                        .subAccountCode(subAccountCode).defaultSplitPercentage(30.0).build());
         assertSuccess(response);
         assertEquals(30, response.getResponseBody().getDefaultSplitPercentage());
     }
