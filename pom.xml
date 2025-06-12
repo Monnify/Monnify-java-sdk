@@ -6,7 +6,7 @@
 
     <groupId>com.monnify</groupId>
     <artifactId>monnify-java-sdk</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <name>Monnify Java SDK</name>
     <description>A Java library built to simplify integrating the Monnify API into your application.</description>
     <url>https://developers.monnify.com/docs/integration-tools/sdk</url>
