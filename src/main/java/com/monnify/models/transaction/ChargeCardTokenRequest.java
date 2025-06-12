@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 import java.util.Map;
 
 @Data
@@ -19,7 +20,7 @@ public class ChargeCardTokenRequest {
     private String cardToken;
 
     @DecimalMin(value = "20.0", message = "Amount must be greater than 20")
-    private double amount;
+    private BigDecimal amount;
 
     @NotBlank(message = "customerName is required")
     private String customerName;

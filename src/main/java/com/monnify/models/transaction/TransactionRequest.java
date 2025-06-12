@@ -30,8 +30,8 @@ public class TransactionRequest {
     private String currencyCode;
     @NotBlank(message = "contractCode is required")
     private String contractCode;
-    private String redirectURL;
+    private String redirectUrl;
     private List<PaymentMethod> paymentMethods;
-    private Map<String,?> metaData;
+    private Map<String, Object> metaData;
     private List<IncomeSplitConfig> incomeSplitConfig;
 }

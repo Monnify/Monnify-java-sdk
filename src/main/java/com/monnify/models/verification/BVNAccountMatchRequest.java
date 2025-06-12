@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Data
 @Builder
@@ -17,5 +18,6 @@ public class BVNAccountMatchRequest {
     @NotBlank(message = "accountNumber is required")
     private String accountNumber;
     @NotBlank(message = "bvn is required")
+    @Pattern(regexp = "\\d{11}", message = "BVN must be an 11-digit number")
     private String bvn;
 }
