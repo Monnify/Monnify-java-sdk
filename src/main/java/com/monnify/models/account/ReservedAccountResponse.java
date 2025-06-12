@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -23,7 +24,7 @@ public class ReservedAccountResponse {
     private String reservationReference;
     private String reservedAccountType;
     private String status;
-    private String createdOn;
+    private LocalDateTime createdOn;
     private Contract contract;
     private List<IncomeSplitConfig> incomeSplitConfig;
     private String bvn;

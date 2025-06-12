@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +15,7 @@ public class BatchDisbursementResponse {
     private BigDecimal totalFee;
     private String batchReference;
     private String batchStatus;
-    private Integer totalTransactionsCount;
-    private String dateCreated;
+    private long totalTransactionsCount;
+    private LocalDateTime dateCreated;
 }
 

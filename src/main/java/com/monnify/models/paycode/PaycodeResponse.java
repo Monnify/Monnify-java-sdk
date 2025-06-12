@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -17,8 +18,8 @@ public class PaycodeResponse {
     private BigDecimal amount;
     private BigDecimal fee;
     private String transactionStatus;
-    private String expiryDate;
-    private String createdOn;
+    private LocalDateTime expiryDate;
+    private LocalDateTime createdOn;
     private String createdBy;
     private String modifiedBy;
 }

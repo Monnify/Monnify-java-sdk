@@ -2,6 +2,7 @@ package com.monnify.utils;
 
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.monnify.exceptions.MonnifyException;
 import com.monnify.models.MonnifyBaseResponse;
 import okhttp3.*;
@@ -9,6 +10,7 @@ import okhttp3.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -20,7 +22,9 @@ import static com.monnify.services.auth.AuthService.getToken;
 public class MonnifyClient {
     private final OkHttpClient client = new OkHttpClient();
     private static final MediaType JSON = MediaType.get("application/json");
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new FlexibleDateDeserializer())
+            .create();
 
     public <T> MonnifyBaseResponse<T> post(String path, String body, Map<String, String> headers, Map<String, String> parameters, TypeToken<MonnifyBaseResponse<T>> typeToken) {
         // Create Request Body

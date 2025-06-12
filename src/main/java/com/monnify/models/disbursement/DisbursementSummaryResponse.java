@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +20,7 @@ public class DisbursementSummaryResponse {
     private String status;
     private String transactionDescription;
     private String transactionReference;
-    private String createdOn;
+    private LocalDateTime createdOn;
     private String sourceAccountNumber;
     private String destinationAccountNumber;
     private String destinationAccountName;

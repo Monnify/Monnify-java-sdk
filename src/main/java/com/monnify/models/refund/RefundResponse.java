@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +20,6 @@ public class RefundResponse {
     private String refundStatus;
     private String refundStrategy;
     private String comment;
-    private String completedOn;
-    private String createdOn;
+    private LocalDateTime completedOn;
+    private LocalDateTime createdOn;
 }

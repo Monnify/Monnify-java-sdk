@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +14,7 @@ public class SingleDisbursementResponse {
     private BigDecimal amount;
     private String reference;
     private String status;
-    private String dateCreated;
+    private LocalDateTime dateCreated;
     private BigDecimal totalFee;
     private String destinationAccountName;
     private String destinationBankName;

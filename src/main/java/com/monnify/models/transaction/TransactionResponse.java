@@ -18,5 +18,5 @@ public class TransactionResponse {
     private List<String> enabledPaymentMethod;
     private String checkoutUrl;
     private List<IncomeSplitConfig> incomeSplitConfig;
-    private Map<String,?> metaData;
+    private Map<String, Object> metaData;
 }

@@ -14,9 +14,9 @@ import javax.validation.constraints.NotBlank;
 public class IncomeSplitConfig {
     @NotBlank(message = "subAccountCode is required")
     private String subAccountCode;
-    private double feePercentage;
-    private double splitAmount;
-    private double splitPercentage;
+    private Double feePercentage;
+    private Double splitAmount;
+    private Double splitPercentage;
     private Boolean feeBearer;
     private String reservedAccountConfigCode;
 }
