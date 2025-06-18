@@ -10,7 +10,7 @@ import java.util.Objects;
  * Monnify SDK Wrapper for handling authentication and API configuration.
  * This class is designed to be initialized once with API credentials and provides access to the API key, secret key, and base URL.
  * @author Oreoluwa Somuyiwa
- * @version 1.0.0
+ * @version 1.1.0
  */
 public final class Monnify {
     private static volatile boolean initialized = false;
