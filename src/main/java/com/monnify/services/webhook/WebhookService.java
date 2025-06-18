@@ -62,6 +62,9 @@ public class WebhookService {
      * @param data                 The data to hash.
      * @param merchantClientSecret The merchant's secret key for the HMAC computation.
      * @return {@code true} if the signatures match, otherwise {@code false}.
+     * @throws SignatureException       If an error occurs during the signature computation.
+     * @throws NoSuchAlgorithmException If the HMAC-SHA512 algorithm is not available.
+     * @throws InvalidKeyException      If the provided key is invalid.
      * @author Oreoluwa Somuyiwa
      */
     public boolean isSignatureValid(String receivedSignature, String data, String merchantClientSecret) throws SignatureException, NoSuchAlgorithmException, InvalidKeyException {
@@ -80,6 +83,18 @@ public class WebhookService {
      * @param receivedSignature The HMAC SHA512 signature received in the webhook header.
      * @param webhookPayload    The raw webhook payload as a map of key-value pairs.
      * @param merchantClientSecret The client secret used to validate the webhook signature.
+     *
+     * @return the webhook response payload {@link BaseWebhookResponse}, where {@code T} represents the specific event data type.
+     *         Possible types include:
+     *         <ul>
+     *             <li>{@link CollectionEventData}</li>
+     *             <li>{@link DisbursementEventData}</li>
+     *             <li>{@link MandateEventData}</li>
+     *             <li>{@link RefundEventData}</li>
+     *             <li>{@link RejectedPaymentEventData}</li>
+     *             <li>{@link SettlementEventData}</li>
+     *             <li>{@link WalletActivityEventData}</li>
+     *         </ul>
      *
      * @throws MonnifyException if the signature is invalid, the event type is unrecognized,
      *                          or an error occurs during signature calculation.
