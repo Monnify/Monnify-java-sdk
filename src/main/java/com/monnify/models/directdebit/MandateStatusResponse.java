@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -13,12 +14,12 @@ import java.math.BigDecimal;
 public class MandateStatusResponse {
     private String mandateCode;
     private String externalMandateReference;
-    private String startDate;
-    private String endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private String mandateStatus;
     private BigDecimal mandateAmount;
     private String contractCode;
-    private Boolean autoRenew;
+    private boolean autoRenew;
     private String customerPhoneNumber;
     private String customerEmailAddress;
     private String customerAddress;

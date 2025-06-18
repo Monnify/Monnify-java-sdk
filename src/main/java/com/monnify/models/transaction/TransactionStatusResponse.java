@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -15,10 +17,10 @@ import java.util.Map;
 public class TransactionStatusResponse {
     private String transactionReference;
     private String paymentReference;
-    private String amountPaid;
-    private String totalPayable;
-    private String settlementAmount;
-    private String paidOn;
+    private BigDecimal amountPaid;
+    private BigDecimal totalPayable;
+    private BigDecimal settlementAmount;
+    private LocalDateTime paidOn;
     private String paymentStatus;
     private String paymentDescription;
     private String transactionHash;
@@ -27,6 +29,6 @@ public class TransactionStatusResponse {
     private Product product;
     private CardDetails cardDetails;
     private CustomerDTO customer;
-    private Map<String, String> metaData;
+    private Map<String, Object> metaData;
     private List<Map<String, Object>> accountPayments;
 }

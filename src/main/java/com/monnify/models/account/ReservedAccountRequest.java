@@ -28,12 +28,14 @@ public class ReservedAccountRequest {
     @Email(message = "Please use a valid email address")
     private String customerEmail;
     private String customerName;
-    @Pattern(regexp = "\\d{11}", message = "Must be an 11-digit number")
+    @Pattern(regexp = "\\d{11}", message = "BVN must be an 11-digit number")
     private String bvn;
-    @Pattern(regexp = "\\d{11}", message = "Must be an 11-digit number")
+    @Pattern(regexp = "\\d{11}", message = "NIN must be an 11-digit number")
     private String nin;
     private String reservedAccountType;
+    @Builder.Default
     private boolean getAllAvailableBanks = true;
+    @Builder.Default
     private List<String> preferredBanks = new ArrayList<>();
     private List<IncomeSplitConfig> incomeSplitConfig;
     private Boolean restrictPaymentSource;

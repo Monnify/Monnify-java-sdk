@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -19,9 +20,9 @@ public class InvoiceResponse {
     private String contractCode;
     private String customerEmail;
     private String customerName;
-    private String expiryDate;
+    private LocalDateTime expiryDate;
     private String createdBy;
-    private String createdOn;
+    private LocalDateTime createdOn;
     private String checkoutUrl;
     private String accountNumber;
     private String accountName;

@@ -25,6 +25,7 @@ class TransactionServiceTest {
 
     private static final String reference = UUID.randomUUID().toString();
     private static String transactionReference = "";
+    private static String tokenId = "";
 
     @Test
     @Order(1)
@@ -37,12 +38,12 @@ class TransactionServiceTest {
         transactionRequest.setPaymentDescription("Trial transaction");
         transactionRequest.setCurrencyCode("NGN");
         transactionRequest.setContractCode(System.getenv("contractCode"));
-        transactionRequest.setRedirectURL("https://my-merchants-page.com/transaction/confirm");
+        transactionRequest.setRedirectUrl("https://my-merchants-page.com/transaction/confirm");
         transactionRequest.setPaymentMethods(Arrays.asList(PaymentMethod.CARD, PaymentMethod.ACCOUNT_TRANSFER));
 
         IncomeSplitConfig incomeSplitConfig = new IncomeSplitConfig();
         incomeSplitConfig.setSubAccountCode("MFY_SUB_523071569011");
-        incomeSplitConfig.setSplitAmount(0);
+        incomeSplitConfig.setSplitAmount(0.0);
         incomeSplitConfig.setFeeBearer(false);
 
         Map<String, Object> metadata = new HashMap<>();
@@ -68,20 +69,22 @@ class TransactionServiceTest {
     }
 
     @Test
+    @Order(2)
     void chargeCard() {
         ChargeCardRequest.CardDetails cardDetails = new ChargeCardRequest.CardDetails();
-        cardDetails.setNumber("4111111111111111");
+        cardDetails.setNumber("4000000000000002");
         cardDetails.setExpiryMonth("10");
         cardDetails.setExpiryYear("2022");
         cardDetails.setPin("1234");
         cardDetails.setCvv("123");
 
         ChargeCardRequest chargeCardRequest = new ChargeCardRequest();
-        chargeCardRequest.setTransactionReference("MNFY|35|20241111222852|000001");
+        chargeCardRequest.setTransactionReference(transactionReference);
         chargeCardRequest.setCollectionChannel("API_NOTIFICATION");
         chargeCardRequest.setCard(cardDetails);
 
         MonnifyBaseResponse<ChargeCardResponse> response = transactionService.chargeCard(chargeCardRequest);
+        tokenId = response.getResponseBody().getSecure3dData().getId();
         assertSuccess(response);
     }
 
@@ -90,11 +93,12 @@ class TransactionServiceTest {
     }
 
     @Test
+    @Order(3)
     void authorizeCardOtp() {
         AuthorizeOtpRequest authorizeOtpRequest = new AuthorizeOtpRequest();
-        authorizeOtpRequest.setTransactionReference("MNFY|67|20220725114827|000285");
+        authorizeOtpRequest.setTransactionReference(transactionReference);
         authorizeOtpRequest.setCollectionChannel("API_NOTIFICATION");
-        authorizeOtpRequest.setTokenId("100.00-b66bef0aa8e660863c4e1177a08fefba");
+        authorizeOtpRequest.setTokenId(tokenId);
         authorizeOtpRequest.setToken("123456");
 
         MonnifyBaseResponse<ChargeCardResponse> response = transactionService.authorizeCardOtp(authorizeOtpRequest);

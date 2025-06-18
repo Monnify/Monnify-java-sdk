@@ -43,7 +43,7 @@ class DirectDebitServiceTest {
             .customerAccountNumber("1234567890")
             .customerAccountBankCode("044")
             .mandateDescription("Monthly subscription")
-            .mandateStartDate(LocalDateTime.of(2025, 3, 11, 8, 55, 0).format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
+            .mandateStartDate(LocalDateTime.of(2025, 6, 11, 8, 55, 0).format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
             .mandateEndDate(LocalDateTime.of(2026, 3, 11, 8, 55, 0).format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
             .mandateAmount(new BigDecimal("5000.00"))
             .debitAmount(new BigDecimal("5000.00"))

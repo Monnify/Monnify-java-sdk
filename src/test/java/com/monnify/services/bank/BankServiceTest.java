@@ -1,10 +1,8 @@
 package com.monnify.services.bank;
 
-import com.google.gson.Gson;
 import com.monnify.Monnify;
 import com.monnify.models.MonnifyBaseResponse;
 import com.monnify.models.bank.BankResponse;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

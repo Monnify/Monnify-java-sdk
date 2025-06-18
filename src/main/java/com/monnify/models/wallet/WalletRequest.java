@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -28,7 +31,11 @@ public class WalletRequest {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class BvnDetails {
+        @NotBlank(message = "bvn is required")
+        @Pattern(regexp = "\\d{11}", message = "BVN must be an 11-digit number")
         private String bvn;
-        private String bvnDateOfBirth;
+        @Past(message = "bvnDateOfBirth must be in the past")
+        @NotNull(message = "bvnDateOfBirth is required")
+        private LocalDate bvnDateOfBirth;
     }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -13,11 +14,11 @@ import java.util.Map;
 @NoArgsConstructor
 public class TransactionRecord {
     private CustomerDTO customerDTO;
-    private String createdOn;
+    private LocalDateTime createdOn;
     private BigDecimal amount;
     private boolean flagged;
     private String currencyCode;
-    private String completedOn;
+    private LocalDateTime completedOn;
     private String paymentDescription;
     private String paymentStatus;
     private String transactionReference;

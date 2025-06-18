@@ -30,13 +30,13 @@ public class ChargeCardResponse {
     @NoArgsConstructor
     public static class Secure3dData {
         private String id;
-        private String redirectURL;
-        private String callBackURL;
+        private String redirectUrl;
+        private String callBackUrl;
         private String eciFlag;
-        private String termURL;
-        private String acsURL;
-        private String transactionID;
-        private String paymentID;
+        private String termUrl;
+        private String acsUrl;
+        private String transactionId;
+        private String paymentId;
         private String method;
         private String jwt;
         private String md;

@@ -1,4 +1,4 @@
-package com.monnify.models.disbursement;
+package com.monnify.models.webhook;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,21 +10,20 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DisbursementSummaryResponse {
+public class DisbursementEventData {
     private BigDecimal amount;
+    private String transactionReference;
+    private BigDecimal fee;
+    private String transactionDescription;
+    private String destinationAccountNumber;
+    private String sessionId;
+    private LocalDateTime createdOn;
+    private String destinationAccountName;
     private String reference;
+    private String destinationBankCode;
+    private LocalDateTime completedOn;
     private String narration;
     private String currency;
-    private BigDecimal fee;
-    private boolean twoFaEnabled;
-    private String status;
-    private String transactionDescription;
-    private String transactionReference;
-    private LocalDateTime createdOn;
-    private String sourceAccountNumber;
-    private String destinationAccountNumber;
-    private String destinationAccountName;
-    private String destinationBankCode;
     private String destinationBankName;
+    private String status;
 }
-

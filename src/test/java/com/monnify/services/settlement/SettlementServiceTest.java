@@ -30,7 +30,7 @@ class SettlementServiceTest {
 
     @Test
     void getSettlementInformation() {
-        MonnifyBaseResponse<SettlementResponse> response = settlementService.getSettlementInformation("M19292");
+        MonnifyBaseResponse<SettlementResponse> response = settlementService.getSettlementInformation("MNFY|35|20241111222852|000001");
         assertSuccess(response);
     }
 }

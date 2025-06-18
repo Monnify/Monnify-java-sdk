@@ -2,21 +2,24 @@ package com.monnify.models.settlement;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Data
 public class Beneficiary {
     private String beneficiaryType;
     private String beneficiaryCode;
-    private Long beneficiaryIncome;
-    private Double incurredFee;
+    private BigDecimal beneficiaryIncome;
+    private BigDecimal incurredFee;
     private String settlementStatus;
     private SettlementInformation settlementInformation;
 
     @Data
     public static class SettlementInformation {
-        private String settledDate;
+        private LocalDateTime settledDate;
         private String settlementReference;
-        private Double settlementAmount;
-        private Long settlementFee;
+        private BigDecimal settlementAmount;
+        private BigDecimal settlementFee;
         private String destinationAccountNumber;
         private String destinationAccountName;
         private String destinationBankName;
