@@ -14,5 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 public class AddLinkedAccountsRequest {
     private boolean getAllAvailableBanks;
+    @Builder.Default
     private List<String> preferredBanks = new ArrayList<>();
 }
