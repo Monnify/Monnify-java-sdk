@@ -37,5 +37,8 @@ public class SingleDisbursementRequest {
     @NotBlank(message = "sourceAccountNumber is required")
     private String sourceAccountNumber;
 
+    @NotBlank(message = "destinationAccountName is required")
+    private String destinationAccountName;
+
     private Boolean async;
 }
