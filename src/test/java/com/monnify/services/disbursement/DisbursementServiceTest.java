@@ -39,6 +39,7 @@ class DisbursementServiceTest {
                 .currency("NGN")
                 .destinationBankCode("044")
                 .destinationAccountNumber("0104430292")
+                .destinationAccountName("Tester Test")
                 .reference(reference)
                 .narration("Test Single trnx" + randomNumber)
                 .build());

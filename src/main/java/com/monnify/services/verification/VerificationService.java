@@ -46,7 +46,7 @@ public class VerificationService {
                 new TypeToken<MonnifyBaseResponse<BankValidationResponse>>() {};
 
         return monnifyClient.get(
-                "/api/v1/disbursements/account/validate",
+                "/api/v2/disbursements/account/validate",
                 null,
                 parameters,
                 typeToken
