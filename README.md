@@ -21,7 +21,7 @@ Add the following dependency to your `pom.xml` if using Maven:
 <dependency>
     <groupId>com.monnify</groupId>
     <artifactId>monnify-java-sdk</artifactId>
-    <version>1.2.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
