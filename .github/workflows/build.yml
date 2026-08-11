@@ -3,11 +3,12 @@ name: Build and Test
 on:
   push:
     branches:
-      - main
+      - 'main'
 
   pull_request:
     branches:
-      - main
+      - 'main'
+      - 'feature/**'
 
 jobs:
   build:
