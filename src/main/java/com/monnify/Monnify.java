@@ -69,6 +69,22 @@ public final class Monnify {
         ensureInitialized();
         return BASE_URL;
     }
+    /**
+     * Allows tests to override the API base URL.
+     *
+     * This method is package-private so it is not exposed as part
+     * of the public SDK API.
+     */
+    static void setBaseUrlForTesting(String baseUrl) {
+        if (!initialized) {
+            throw new MonnifyException(
+                    "Monnify must be initialized before setting the test base URL."
+            );
+        }
+
+        BASE_URL = baseUrl;
+    }
+
 
     private static void ensureInitialized() {
         if (!initialized) {

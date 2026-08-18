@@ -56,6 +56,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>3.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>4.12.0</version>
@@ -178,6 +184,30 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+
+                    <!--
+                        Default test suite.
+
+                        Only MockTest classes are executed during normal builds.
+
+                        Run:
+                            mvn clean verify
+
+                        API integration tests are executed explicitly using:
+                            mvn clean verify -Papi-tests
+                    -->
+                    <includes>
+                        <include>**/*MockTest.java</include>
+                    </includes>
+
+                </configuration>
             </plugin>
 
         </plugins>

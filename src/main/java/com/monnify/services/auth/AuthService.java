@@ -73,4 +73,13 @@ public class AuthService {
     private static String encodeToBase64(String apiKey, String secretKey) {
         return Base64.getEncoder().encodeToString(String.format("%s:%s", apiKey, secretKey).getBytes(StandardCharsets.UTF_8));
     }
+    /**
+     * Resets cached authentication state.
+     *
+     * This method is intended for testing only.
+     */
+    public static void resetForTesting() {
+        authToken = null;
+        expiryTime = 0;
+    }
 }
