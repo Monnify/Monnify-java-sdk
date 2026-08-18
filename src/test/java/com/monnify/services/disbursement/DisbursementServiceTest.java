@@ -4,7 +4,6 @@ import com.monnify.Monnify;
 import com.monnify.models.MonnifyBaseResponse;
 import com.monnify.models.SearchResponse;
 import com.monnify.models.disbursement.*;
-import com.monnify.services.TestEnvironment;
 import org.junit.jupiter.api.*;
 
 import java.math.BigDecimal;
@@ -20,10 +19,10 @@ class DisbursementServiceTest {
     private final DisbursementService disbursementService = new DisbursementService();
     @BeforeAll
     static void setUp() {
-        assertNotNull(TestEnvironment.get("apiKey"));
-        assertNotNull(TestEnvironment.get("secretKey"));
-        assertNotNull(TestEnvironment.get("contractCode"));
-        Monnify.initialize(TestEnvironment.get("apiKey"), TestEnvironment.get("secretKey"));
+        assertNotNull(System.getenv("apiKey"));
+        assertNotNull(System.getenv("secretKey"));
+        assertNotNull(System.getenv("contractCode"));
+        Monnify.initialize(System.getenv("apiKey"), System.getenv("secretKey"));
     }
 
     private static final String reference = UUID.randomUUID().toString();
