@@ -75,7 +75,7 @@ public final class Monnify {
      * This method is package-private so it is not exposed as part
      * of the public SDK API.
      */
-    static void setBaseUrlForTesting(String baseUrl) {
+    public static void setBaseUrlForTesting(String baseUrl) {
         if (!initialized) {
             throw new MonnifyException(
                     "Monnify must be initialized before setting the test base URL."
