@@ -1,6 +1,5 @@
 package com.monnify.services.settlement;
 
-import com.google.gson.Gson;
 import com.monnify.Monnify;
 import com.monnify.models.MonnifyBaseResponse;
 import com.monnify.models.SearchResponse;
