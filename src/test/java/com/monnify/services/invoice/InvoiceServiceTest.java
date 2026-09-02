@@ -1,7 +1,6 @@
 package com.monnify.services.invoice;
 
 import com.google.gson.Gson;
-import com.monnify.MainTest;
 import com.monnify.Monnify;
 import com.monnify.models.MonnifyBaseResponse;
 import com.monnify.models.SearchResponse;

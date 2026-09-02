@@ -1,6 +1,5 @@
 package com.monnify.services.directdebit;
 
-import com.google.gson.Gson;
 import com.monnify.Monnify;
 import com.monnify.models.MonnifyBaseResponse;
 import com.monnify.models.directdebit.MandateRequest;

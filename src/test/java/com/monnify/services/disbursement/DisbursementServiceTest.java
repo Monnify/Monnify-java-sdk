@@ -7,7 +7,6 @@ import com.monnify.models.disbursement.*;
 import org.junit.jupiter.api.*;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -35,10 +34,10 @@ class DisbursementServiceTest {
         int randomNumber = new Random().nextInt(1000);
         MonnifyBaseResponse<SingleDisbursementResponse> response = disbursementService.disburseSingle(SingleDisbursementRequest.builder()
                 .amount(BigDecimal.valueOf(randomNumber))
-                .sourceAccountNumber("7853297429")
+                .sourceAccountNumber("7216487825")
                 .currency("NGN")
-                .destinationBankCode("044")
-                .destinationAccountNumber("0104430292")
+                .destinationBankCode("058")
+                .destinationAccountNumber("7062396366")
                 .destinationAccountName("Tester Test")
                 .reference(reference)
                 .narration("Test Single trnx" + randomNumber)
@@ -56,29 +55,29 @@ class DisbursementServiceTest {
                 .narration("test batch on sdk" + randomNumber)
                 .notificationInterval(25)
                 .onValidationFailure(OnValidationFailure.CONTINUE)
-                .sourceAccountNumber("7853297429")
+                .sourceAccountNumber("8144157072")
                 .transactionList(List.of(DisbursementTransaction.builder()
-                        .amount(BigDecimal.valueOf(1000))
+                        .amount(BigDecimal.valueOf(10))
                         .currency("NGN")
                         .narration("batch dis" + randomNumber)
                         .reference(UUID.randomUUID().toString())
-                        .destinationAccountNumber("0104430292")
-                        .destinationBankCode("044")
+                        .destinationAccountNumber("7062396366")
+                        .destinationBankCode("305")
                         .build()
                         ,DisbursementTransaction.builder()
-                        .amount(BigDecimal.valueOf(500))
+                        .amount(BigDecimal.valueOf(50))
                         .currency("NGN")
                         .narration("batch dis" + randomNumber)
                         .reference(UUID.randomUUID().toString())
-                        .destinationAccountNumber("0104430292")
-                        .destinationBankCode("044")
+                        .destinationAccountNumber("7062396366")
+                        .destinationBankCode("305")
                         .build(),DisbursementTransaction.builder()
-                        .amount(BigDecimal.valueOf(250))
+                        .amount(BigDecimal.valueOf(25))
                         .currency("NGN")
                         .narration("batch dis" + randomNumber)
                         .reference(UUID.randomUUID().toString())
-                        .destinationAccountNumber("0104430292")
-                        .destinationBankCode("044")
+                        .destinationAccountNumber("7062396366")
+                        .destinationBankCode("305")
                         .build()
                 )).build());
         assertSuccess(response);
